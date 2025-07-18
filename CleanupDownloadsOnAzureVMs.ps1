@@ -1,5 +1,6 @@
 param (
     [string]$resourceGroupName = "Siddhant"
+    #please change the name of the resource group as I was doing it in my enivroment I added my resource group name
 )
 
 # Authenticate using Managed Identity
@@ -28,7 +29,10 @@ $usedPercent = (($disk.Size - $disk.FreeSpace) / $disk.Size) * 100
 
 Write-Output "Disk usage on C: is $([math]::Round($usedPercent, 2))%"
 
-if ($usedPercent -ge 2) {
+# Here I have kept the disk usage is greater than or equal to 75% as the threshold for cleanup
+# You can change this value as per your requirement  
+
+if ($usedPercent -ge 75) {
     Write-Output "Disk usage exceeds 90%. Proceeding with Downloads folder cleanup."
 
     $users = Get-ChildItem -Path "C:\Users" -Directory | Where-Object { $_.Name -notin @("Public", "Default", "Default User", "All Users") }
