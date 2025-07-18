@@ -33,7 +33,7 @@ Write-Output "Disk usage on C: is $([math]::Round($usedPercent, 2))%"
 # You can change this value as per your requirement  
 
 if ($usedPercent -ge 75) {
-    Write-Output "Disk usage exceeds 90%. Proceeding with Downloads folder cleanup."
+    Write-Output "Disk usage exceeds 75%. Proceeding with Downloads folder cleanup."
 
     $users = Get-ChildItem -Path "C:\Users" -Directory | Where-Object { $_.Name -notin @("Public", "Default", "Default User", "All Users") }
 
