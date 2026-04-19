@@ -60,7 +60,7 @@ resourceGroupName = "your-resource-group-name"
 
 ## Threshold
 
-The cleanup threshold is set to 75% disk usage on C:. To change it, edit line 35 of the script:
+The cleanup threshold is set to **75%** disk usage on C:. To change it, edit line 35 of the script:
 
 ```powershell
 if ($usedPercent -ge 75) {
