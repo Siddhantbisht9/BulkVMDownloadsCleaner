@@ -1,11 +1,11 @@
 param (
-    [string]$resourceGroupName = "Siddhant"
-    #please change the name of the resource group as I was doing it in my enivroment I added my resource group name
+    [string]$resourceGroupName = "name of your resource group"
+    #please change the name of the resource group as I was doing it in my enivroment I added my resource group name.
 )
 
-# Authenticate using Managed Identity
 Connect-AzAccount -Identity
 
+#Tenant ID is not required for this script as we are using the Managed Identity of the VM to authenticate and run the script on the VM. The Managed Identity will have the necessary permissions to access the resources in the subscription and perform the cleanup operations on the VMs.
 # Get subscription ID from environment
 $subscriptionId = (Get-AzContext).Subscription.Id
 if (-not $subscriptionId) {
@@ -16,7 +16,7 @@ Set-AzContext -SubscriptionId $subscriptionId
 
 Write-Output "Using subscription: $subscriptionId"
 
-# Get all VMs in the resource group
+# Get all VMs in the RG
 $vms = Get-AzVM -ResourceGroupName $resourceGroupName
 
 foreach ($vm in $vms) {
